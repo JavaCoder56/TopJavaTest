@@ -28,7 +28,7 @@ public class PlayerService {
         }
     }
     public void checkName(String name) {
-        if(name==null||name.length()>12) {
+        if(name==null||name.isEmpty()||name.length()>12) {
             throw new BadRequestException("Invalid name");
         }
     }
@@ -62,7 +62,7 @@ public class PlayerService {
     }
 
     public Integer calculatePlayerLevel(Integer experience) {
-        return (int)(Math.sqrt(2500+200*experience)-50)/100;
+        return (((int)Math.sqrt(2500+200*experience))-50)/100;
     }
 
     public Integer calculateExpForNextLvl(Integer level, Integer experience) {
@@ -105,7 +105,7 @@ public class PlayerService {
         }
         if(player.getTitle()!=null) {
             checkTitle(player.getTitle());
-            playerForUpdate.setName(player.getName());
+            playerForUpdate.setTitle(player.getTitle());
         }
         if(player.getRace()!=null) {
             checkRace(player.getRace());
